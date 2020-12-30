@@ -123,10 +123,10 @@ int main(void)
 
     switch (my_char) {
     case 'j':
-      new_alpha -= 5;
+      new_alpha -= 60;
       break;
     case 'k':
-      new_alpha += 5;
+      new_alpha += 60;
       break;
     default:
       continue;
