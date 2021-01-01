@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <assert.h>
 #include <unistd.h>
@@ -49,6 +50,8 @@ int main(void)
   width = info.width;
   height = info.height;
 
+  //width = 1920;
+ // height = 1320;
   // Allocate some memory for our square.
   void *image;
   int pitch = ALIGN_UP(width*2, 32);
@@ -56,7 +59,7 @@ int main(void)
   assert(image);
 
   // Fill the memory with our green square.
-  /* FillRect(image, pitch, 0, 0, width, height, 0xf800); */
+//   FillRect(image, pitch, 0, 0, width, height, 0xf800);
   FillRect(image, pitch, 0, 0, width, height, 0x0000);
 
   // Create the resource to which our element will refer.
@@ -88,7 +91,7 @@ int main(void)
   DISPMANX_ELEMENT_HANDLE_T element;
   VC_DISPMANX_ALPHA_T alpha = {
     DISPMANX_FLAGS_ALPHA_FROM_SOURCE |
-    DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS, 255, /*alpha 0->255*/ 0
+    DISPMANX_FLAGS_ALPHA_FIXED_ALL_PIXELS, 40, /*alpha 0->255*/ 0
   };
   element = vc_dispmanx_element_add(update,
                                     display,
@@ -119,14 +122,17 @@ int main(void)
 
   uint8_t new_alpha = 255;
   while ((my_char = getchar()) != 'q') {
-    // printf("%c", my_char);
+     printf("%c", my_char);
 
     switch (my_char) {
     case 'j':
-      new_alpha -= 60;
+      new_alpha = 100;
+      break;
+    case 'h':
+      new_alpha = 150;
       break;
     case 'k':
-      new_alpha += 60;
+      new_alpha = 50;
       break;
     default:
       continue;
